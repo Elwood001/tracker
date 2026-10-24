@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Recomp Tracker · 89 → 75 kg by Holi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f4efe6;--card:#fffaf0;--ink:#1d1b17;--mute:#7a7366;--line:#ded5c3;--acc:#d9482b;--ok:#2f7d4f;--okbg:#dcefe1;--deload:#e8a317;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15130f;--card:#1f1c16;--ink:#f2ecdf;--mute:#a1998a;--line:#38332a;--acc:#ff6a45;--ok:#5cc489;--okbg:#20382a;--deload:#f0b429;}}
+:root[data-theme="dark"]{--bg:#15130f;--card:#1f1c16;--ink:#f2ecdf;--mute:#a1998a;--line:#38332a;--acc:#ff6a45;--ok:#5cc489;--okbg:#20382a;--deload:#f0b429;}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*:before,*:after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 Barlow,system-ui,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:20px 16px 60px}
+h1,h2,h3,.big{font-family:"Barlow Condensed","Arial Narrow",sans-serif;text-transform:uppercase;letter-spacing:.02em;margin:0}
+h1{font-size:clamp(34px,8vw,56px);line-height:1}
+h1 span{color:var(--acc)}
+.sub{color:var(--mute);margin:6px 0 18px}
+nav{display:flex;gap:6px;overflow-x:auto;border-bottom:2px solid var(--ink);margin-bottom:18px}
+nav button{font:600 18px "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.04em;background:none;border:0;color:var(--mute);padding:8px 14px;cursor:pointer;white-space:nowrap}
+nav button.on{background:var(--ink);color:var(--bg)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px;margin-bottom:14px}
+.scroll{overflow-x:auto;max-width:100%}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font:600 13px "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.06em;color:var(--mute)}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+tr.tot td{font-weight:600;border-top:2px solid var(--ink)}
+.weeks{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px}
+.weeks button{width:40px;height:34px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:5px;font:600 14px Barlow;cursor:pointer;position:relative}
+.weeks button.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.weeks button.dl{border-bottom:3px solid var(--deload)}
+.weeks button.full{background:var(--okbg);color:var(--ok)}
+.weeks button.on.full{background:var(--ok);color:#fff}
+.bar{height:8px;background:var(--line);border-radius:4px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ok);transition:width .2s}
+.tag{display:inline-block;font:700 13px "Barlow Condensed";letter-spacing:.08em;padding:2px 8px;border-radius:3px;background:var(--deload);color:#1d1b17;text-transform:uppercase}
+.day h3{font-size:22px;margin:16px 0 4px;border-left:4px solid var(--acc);padding-left:8px}
+.row{display:flex;align-items:center;gap:10px;padding:8px 6px;border-bottom:1px solid var(--line);cursor:pointer;border-radius:4px}
+.row.done{background:var(--okbg)}
+.row.done .nm{text-decoration:line-through;opacity:.7}
+.row .nm{flex:1;font-weight:500}
+.row small{color:var(--mute);display:block;font-weight:400}
+input[type=checkbox]{width:22px;height:22px;accent-color:var(--ok);flex:none}
+input[type=number]{width:84px;font:inherit;padding:5px 6px;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:14px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.stat .big{font-size:34px;line-height:1.05}
+.stat span{color:var(--mute);font-size:13px}
+.ok{color:var(--ok);font-weight:600}.low{color:var(--acc);font-weight:600}
+.ctl{display:flex;gap:8px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+.ctl button{font:600 16px Barlow;padding:7px 12px;border:1px solid var(--ink);background:var(--card);color:var(--ink);border-radius:5px;cursor:pointer}
+.ctl select{font:inherit;padding:7px;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:5px}
+.note{color:var(--mute);font-size:13px}
+svg text{fill:var(--mute);font:13px Barlow}
+html{-webkit-text-size-adjust:100%}
+button,label.row{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.row{min-height:52px}
+@media (max-width:640px){
+ .wrap{padding:14px 12px calc(84px + env(safe-area-inset-bottom,0px))}
+ nav{position:fixed;left:0;right:0;bottom:0;top:auto;z-index:20;margin:0;gap:0;border:0;border-top:2px solid var(--ink);background:var(--card);padding-bottom:env(safe-area-inset-bottom,0px);overflow:visible}
+ nav button{flex:1;padding:14px 1px;font-size:14px;letter-spacing:.02em;white-space:normal;line-height:1.05}
+ nav button.on{background:var(--ink);color:var(--bg)}
+ .weeks{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+ .weeks button{width:100%;height:44px;font-size:16px}
+ input[type=number]{font-size:16px;width:100%;min-height:44px}
+ .ctl select{font-size:16px;flex:1;min-width:0;min-height:44px}
+ .ctl button{min-height:44px;min-width:44px}
+ .stat .big{font-size:30px}
+ .card{padding:12px}
+ .wt table,.wt tr,.wt td{display:block;width:100%}
+ .wt tr.h{display:none}
+ .wt tr{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;padding:12px 0;border-bottom:1px solid var(--line)}
+ .wt td{border:0;padding:0;text-align:left}
+ .wt td.n{text-align:left}
+ .wt td:before{content:attr(data-l);display:block;font:600 11px "Barlow Condensed",sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+ svg{min-width:0!important}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Recomp <span>Tracker</span></h1>
+<p class="sub">28 Sep 2026 → Holi, 22 Mar 2027 · 89 kg → 75 kg · Progress saves in this browser. <span id="sst"></span></p>
+<nav id="nav"></nav>
+<main id="view"></main>
+</div>
+<script>
+const W1=46293, N=26, DELOAD=[7,14,21], START=46295, TARGET=46468, SW=89, TW=75, PT=155;
+const DAYS=[
+["Monday · Upper (strength)",[["Barbell bench press","4 x 5-6","2-3 min"],["Barbell or chest-supported row","4 x 6-8","2 min"],["Seated dumbbell overhead press","3 x 8-10","90 sec"],["Lat pulldown or pull-ups","3 x 8-10","90 sec"],["Cable triceps pushdown","3 x 10-12","60 sec"],["Dumbbell curl","3 x 10-12","60 sec"]]],
+["Tuesday · Lower (strength)",[["Back squat","4 x 5-6","2-3 min"],["Dumbbell step-ups","3 x 8-10 per leg","90 sec"],["Leg press","3 x 10-12","90 sec"],["Leg curl","3 x 10-12","60 sec"],["Standing calf raise","4 x 10-15","60 sec"],["Hanging leg raise or cable crunch","3 x 10-15","60 sec"]]],
+["Wednesday · Active recovery",[["Easy walk or cycle","25-30 min",""],["Steps target","10-12k steps",""]]],
+["Thursday · Upper (hypertrophy)",[["Incline dumbbell press","4 x 8-10","90 sec"],["Seated cable row","4 x 10-12","90 sec"],["Dumbbell lateral raise","4 x 12-15","60 sec"],["Cable fly or pec deck","3 x 12-15","60 sec"],["Face pull","3 x 15","60 sec"],["Overhead triceps extension","3 x 10-12","60 sec"],["Incline dumbbell curl","3 x 10-12","60 sec"]]],
+["Friday · Rest",[["Full rest + steps target","10-12k steps",""]]],
+["Saturday · Lower (hypertrophy)",[["Goblet squat","3 x 10-12","90 sec"],["Bulgarian split squat","3 x 8-10 per leg","90 sec"],["Hip thrust","3 x 10-12","90 sec"],["Leg extension","3 x 12-15","60 sec"],["Leg curl","3 x 12-15","60 sec"],["Seated calf raise","4 x 12-15","60 sec"]]],
+["Sunday · Cardio (easy pace)",[["Warm-up at easy pace","5 min",""],["Steady cardio (incline walk / bike / cross-trainer)","30-40 min (build to 45-50)",""],["Cool-down + light stretching","5 min",""]]]];
+const TOTAL=DAYS.reduce((a,d)=>a+d[1].length,0);
+const MEALS=[["Breakfast","8:00 am","3 moong dal chillas stuffed with 50 g paneer, mint chutney",450,27],["Mid-morning","11:00 am","200 g hung (thick, Greek-style) curd + 10 almonds",250,17],["Lunch","1:30 pm","1 cup cooked rice, 1 bowl dal, 100 g paneer or tofu, large salad",650,32],["Pre-workout (whey 1)","4:30 pm","1 scoop whey in water",120,25],["Pre-workout (banana)","5:00 pm","1 banana (skip on rest days)",100,1],["Post-workout (whey 2)","After gym","1 scoop whey in water",120,25],["Dinner","9:00 pm","2 rotis, dry curry with 40 g soya chunks (dry weight) + vegetables, 100 g curd",500,32]];
+const SWAPS=[["Paneer","100 g","Best all-round veg protein, calorie-dense",265,18],["Firm tofu","100 g","Lower calorie than paneer",120,13],["Soya chunks","40 g dry","Highest protein per kcal; soak or boil first",140,21],["Hung curd","200 g","Regular curd has about half the protein",180,17],["Moong / masoor dal","1 bowl (150 g)","Pair with rice for a complete protein",150,10],["Boiled chana or rajma","100 g","Good in salads or sabzi",165,9],["Toned milk","250 ml","Easy add-on to a shake or oats",150,8],["Roti (whole wheat)","1 medium","Small but it adds up",90,3]];
+const PHASES=[["Phase 1","89 to 85 kg","Meal plan above (start here)",2190,2040],["Phase 2","85 to 80 kg","1 tsp less oil in cooking, drop the almonds (~110 kcal)",2080,1930],["Phase 3","80 to 75 kg","Swap lunch paneer for tofu (~145 kcal, ~5 g less protein; add a little soya)",1935,1785]];
+const LOGCOLS=[["Breakfast",27,450],["Mid-morning curd",17,250],["Lunch",32,650],["Whey shake 1",25,120],["Banana",1,100],["Whey shake 2",25,120],["Dinner",32,500],["Water 3 L+",0,0],["Steps 10k+",0,0],["Caffeine OK (max 2 cups, none after 2 pm)",0,0],["Slept 7+ hours",0,0]];
+
+let S={wk:{},log:{},wt:{},waist:{},exp:[],em:null,tab:"Workout",week:null,day:null};
+try{const r=localStorage.getItem("recomp-v1");if(r)S=Object.assign(S,JSON.parse(r))}catch(e){}
+const raw=()=>{try{localStorage.setItem("recomp-v1",JSON.stringify(S))}catch(e){}};
+let gt=null;const save=()=>{raw();if(typeof ghOn=="function"&&ghOn()){GH.dirty=1;ghSave();clearTimeout(gt);gt=setTimeout(()=>ghPush(),3000)}};
+const serial=d=>Math.floor((Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())-Date.UTC(1899,11,30))/864e5);
+const fmt=(n,o)=>new Date(Date.UTC(1899,11,30)+n*864e5).toLocaleDateString("en-GB",Object.assign({day:"numeric",month:"short",timeZone:"UTC"},o||{}));
+const today=serial(new Date());
+if(S.week==null)S.week=Math.min(N,Math.max(1,Math.floor((today-W1)/7)+1));
+if(S.day==null)S.day=Math.min(W1+N*7-1,Math.max(W1,today));
+const wkDone=w=>{let c=0;for(const k in S.wk)if(k.startsWith(w+":")&&S.wk[k])c++;return c};
+const $=s=>document.querySelector(s);
+const TABS=["Workout","Meal Plan","Daily Log","Weigh-In","Expenses","Data"];
+function nav(){$("#nav").innerHTML=TABS.map(t=>`<button class="${t==S.tab?"on":""}" onclick="S.tab='${t}';MSG='';save();render()">${t}</button>`).join("")}
+
+function workout(){
+ const w=S.week,done=wkDone(w),pct=Math.round(done/TOTAL*100);
+ const type=DELOAD.includes(w)?"DELOAD":w==N?"HOLI":"Cut";
+ let h=`<div class="weeks">`+Array.from({length:N},(_,i)=>i+1).map(i=>`<button class="${i==w?"on":""} ${DELOAD.includes(i)?"dl":""} ${wkDone(i)==TOTAL?"full":""}" onclick="S.week=${i};save();render()">${i}</button>`).join("")+`</div>`;
+ h+=`<div class="card"><div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px"><h2>Week ${w} · from ${fmt(W1+(w-1)*7,{weekday:"short"})}</h2><span>${type=="Cut"?"Cut week":`<span class="tag">${type}</span>`} · ${done}/${TOTAL} done</span></div><div class="bar" style="margin-top:8px"><i style="width:${pct}%"></i></div>`;
+ if(type=="DELOAD")h+=`<p class="note">Deload: cut sets by about 40% (keep the weights) and eat near maintenance (~2,700-2,900 kcal).</p>`;
+ if(type=="HOLI")h+=`<p class="note">Holi week. Goal weight: ${TW} kg. 🎉</p>`;
+ DAYS.forEach((d,di)=>{h+=`<div class="day"><h3>${d[0]}</h3>`;d[1].forEach((e,ei)=>{const k=`${w}:${di}:${ei}`;h+=`<label class="row ${S.wk[k]?"done":""}"><input type="checkbox" ${S.wk[k]?"checked":""} onchange="S.wk['${k}']=this.checked;save();render()"><span class="nm">${e[0]}<small>${e[1]}${e[2]?" · rest "+e[2]:""}</small></span></label>`});h+=`</div>`});
+ return h+`</div><p class="note">Deload weeks (7, 14, 21) are underlined in amber.</p>`;
+}
+
+function meals(){
+ const k=MEALS.reduce((a,m)=>a+m[3],0),p=MEALS.reduce((a,m)=>a+m[4],0),whey=50;
+ let h=`<div class="stats"><div class="stat"><div class="big">${PT} g</div><span>daily protein target (~1.75 g/kg)</span></div><div class="stat"><div class="big">${whey} g</div><span>from whey (2 scoops × 25 g)</span></div><div class="stat"><div class="big">${PT-whey} g</div><span>needed from food</span></div></div>`;
+ h+=`<div class="card"><h2>Training day · Mon / Tue / Thu / Sat</h2><div class="scroll"><table><tr><th>Meal</th><th>Time</th><th>What to eat</th><th class="n">Kcal</th><th class="n">Protein</th></tr>`+MEALS.map(m=>`<tr><td>${m[0]}</td><td>${m[1]}</td><td>${m[2]}</td><td class="n">${m[3]}</td><td class="n">${m[4]}</td></tr>`).join("")+`<tr class="tot"><td>Total</td><td></td><td></td><td class="n">${k}</td><td class="n">${p} g</td></tr></table></div><p class="note">Rest days (Wed / Fri / Sun): skip the banana, 3/4 cup rice at lunch, same protein. Drink 3-4 L water. Consider vitamin B12 (vegetarian).</p></div>`;
+ h+=`<div class="card"><h2>Protein swaps</h2><div class="scroll"><table><tr><th>Food</th><th>Serving</th><th>Note</th><th class="n">Kcal</th><th class="n">Protein</th></tr>`+SWAPS.map(m=>`<tr><td>${m[0]}</td><td>${m[1]}</td><td>${m[2]}</td><td class="n">${m[3]}</td><td class="n">${m[4]} g</td></tr>`).join("")+`</table></div></div>`;
+ h+=`<div class="card"><h2>Calorie phases</h2><div class="scroll"><table><tr><th>Phase</th><th>Weight</th><th>Change</th><th class="n">Training kcal</th><th class="n">Rest kcal</th></tr>`+PHASES.map(m=>`<tr><td>${m[0]}</td><td>${m[1]}</td><td>${m[2]}</td><td class="n">${m[3]}</td><td class="n">${m[4]}</td></tr>`).join("")+`</table></div><p class="note">Every 4 weeks: if your 3-week average loss is under 0.4 kg/week, trim ~100 kcal (or add 2k steps/day); if over 0.9 kg/week, add ~150 kcal. Never go below ~1,900 kcal on training days. Deload weeks: eat around maintenance.</p></div>`;
+ return h;
+}
+
+function logVals(d){const a=S.log[d]||{};let p=0,c=0;LOGCOLS.forEach((x,i)=>{if(a[i]){p+=x[1];c+=x[2]}});return{a,p,c}}
+function dailylog(){
+ let onT=0,sl=0,caf=0;for(let d=W1;d<W1+N*7;d++){const v=logVals(d);if(v.p>=PT)onT++;if(v.a[10])sl++;if(v.a[9])caf++}
+ const d=S.day,v=logVals(d),ok=v.p>=PT;
+ let h=`<div class="stats"><div class="stat"><div class="big">${onT}</div><span>days on protein target</span></div><div class="stat"><div class="big">${sl}</div><span>days slept 7+ h</span></div><div class="stat"><div class="big">${caf}</div><span>caffeine rule kept</span></div></div>`;
+ h+=`<div class="ctl"><button onclick="S.day=Math.max(${W1},S.day-1);save();render()">←</button><select onchange="S.day=+this.value;save();render()">`+Array.from({length:N*7},(_,i)=>W1+i).map(x=>`<option value="${x}" ${x==d?"selected":""}>${fmt(x,{weekday:"short"})}${x==today?" (today)":""}</option>`).join("")+`</select><button onclick="S.day=Math.min(${W1+N*7-1},S.day+1);save();render()">→</button><button onclick="S.day=Math.min(${W1+N*7-1},Math.max(${W1},${today}));save();render()">Today</button></div>`;
+ h+=`<div class="card"><h2>${fmt(d,{weekday:"long",year:"numeric"})}</h2>`;
+ LOGCOLS.forEach((x,i)=>{h+=`<label class="row ${v.a[i]?"done":""}"><input type="checkbox" ${v.a[i]?"checked":""} onchange="(S.log[${d}]=S.log[${d}]||{})[${i}]=this.checked;save();render()"><span class="nm">${x[0]}<small>${x[2]?x[1]+" g protein · "+x[2]+" kcal":""}</small></span></label>`});
+ h+=`<p style="margin:14px 0 4px"><b class="big" style="font-size:30px">${v.p} g</b> protein · <b class="big" style="font-size:30px">${v.c}</b> kcal · <span class="${ok?"ok":"low"}">${ok?"On target":v.p?PT-v.p+" g to go":""}</span></p><div class="bar"><i style="width:${Math.min(100,v.p/PT*100)}%"></i></div></div>`;
+ return h;
+}
+
+const expected=dt=>SW-(SW-TW)/((TARGET-START)/7)*((dt-START)/7);
+function weighin(){
+ const rows=[[START,"Start"]];for(let i=1;i<N;i++)rows.push([W1+i*7+ -W1+W1-0+7-7+ (START-W1)*0+ (i*0),"After week "+i]);
+ rows.length=1;for(let i=1;i<=N-1;i++)rows.push([W1+7*i+0,"After week "+i]);rows.push([TARGET,"Holi · target"]);
+ const pts=rows.map(r=>({d:r[0],e:expected(r[0]),w:parseFloat(S.wt[r[0]])})).filter(p=>true);
+ const last=[...pts].reverse().find(p=>!isNaN(p.w));
+ const pace=(SW-TW)/((TARGET-START)/7);
+ let h=`<div class="stats"><div class="stat"><div class="big">${last?last.w.toFixed(1):SW}</div><span>current kg</span></div><div class="stat"><div class="big">${last?(SW-last.w).toFixed(1):"0.0"}</div><span>kg lost</span></div><div class="stat"><div class="big">${last?(last.w-TW).toFixed(1):(SW-TW).toFixed(1)}</div><span>kg to ${TW}</span></div><div class="stat"><div class="big">${pace.toFixed(2)}</div><span>kg/week required</span></div></div>`;
+ const X=d=>40+(d-START)/(TARGET-START)*640,Y=v=>20+(89.5-v)/(89.5-74.5)*200;
+ let path=pts.map((p,i)=>(i?"L":"M")+X(p.d).toFixed(1)+" "+Y(p.e).toFixed(1)).join("");
+ let act=pts.filter(p=>!isNaN(p.w)).map((p,i)=>(i?"L":"M")+X(p.d).toFixed(1)+" "+Y(p.w).toFixed(1)).join("");
+ const dots=pts.filter(p=>!isNaN(p.w)).map(p=>`<circle cx="${X(p.d).toFixed(1)}" cy="${Y(p.w).toFixed(1)}" r="4" fill="var(--acc)"/>`).join("");
+ const grid=[90,85,80,75].map(v=>`<line x1="40" x2="680" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--line)"/><text x="6" y="${Y(v)+4}">${v} kg</text>`).join("");
+ h+=`<div class="card"><h2>Trend vs plan</h2><div class="scroll"><svg viewBox="0 0 700 240" style="width:100%;height:auto">${grid}<path d="${path}" fill="none" stroke="var(--mute)" stroke-dasharray="5 4" stroke-width="2"/><path d="${act}" fill="none" stroke="var(--acc)" stroke-width="3"/>${dots}<text x="40" y="236">${fmt(START)}</text><text x="640" y="236">Holi</text></svg></div><p class="note">Dashed = expected pace. Orange = your weigh-ins.</p></div>`;
+ h+=`<div class="card"><h2>Weekly weigh-in</h2><p class="note">Every Monday morning, same time, after the toilet. Judge progress by trend, not single days.</p><div class="scroll wt"><table><tr class="h"><th>Date</th><th>Checkpoint</th><th>Weight (kg)</th><th>Waist (cm)</th><th class="n">Change</th><th class="n">Total lost</th><th class="n">To target</th><th class="n">Expected</th></tr>`;
+ let prev=null;
+ pts.forEach((p,i)=>{const w=i==0&&isNaN(p.w)?SW:p.w,has=!isNaN(w);const ch=has&&prev!=null?(w-prev):null;
+  h+=`<tr><td data-l="Date">${fmt(p.d)}</td><td data-l="Checkpoint">${rows[i][1]}</td><td data-l="Weight (kg)">${i==0?SW:`<input type="number" step="0.1" value="${S.wt[p.d]??""}" onchange="S.wt[${p.d}]=this.value;save();render()">`}</td><td data-l="Waist (cm)"><input type="number" step="0.5" value="${S.waist[p.d]??""}" onchange="S.waist[${p.d}]=this.value;save()"></td><td class="n" data-l="Change">${ch!=null?(ch>0?"+":"")+ch.toFixed(1):""}</td><td class="n" data-l="Total lost">${has?(SW-w).toFixed(1):""}</td><td class="n" data-l="To target">${has?(w-TW).toFixed(1):""}</td><td class="n" data-l="Expected">${p.e.toFixed(1)}</td></tr>`;
+  if(has)prev=w});
+ return h+`</table></div></div>`;
+}
+
+let DL=null,MSG="",PEND=null;
+try{if(window.claude&&claude.use)claude.use("downloads").then(x=>{DL=x;if(S.tab=="Data")render()}).catch(()=>{})}catch(e){}
+const payload=()=>JSON.stringify({app:"recomp-tracker",v:1,exported:new Date().toISOString(),wk:S.wk,log:S.log,wt:S.wt,waist:S.waist,exp:S.exp},null,1);
+function csv(){const q=v=>'"'+String(v??"").replace(/"/g,'""')+'"';
+ const wd=new Set([START]);for(let i=1;i<N;i++)wd.add(W1+7*i);wd.add(TARGET);
+ let r=[["Date","Day","Weight kg","Waist cm","Protein g","Kcal"].concat(LOGCOLS.map(c=>c[0]))];
+ for(let d=W1;d<W1+N*7;d++){const v=logVals(d);r.push([fmt(d,{year:"numeric"}),fmt(d,{weekday:"short"}),S.wt[d]||"",S.waist[d]||"",v.p,v.c].concat(LOGCOLS.map((c,i)=>v.a[i]?"Y":"")))}
+ const wr=[["Week","Workout items done","of"]];for(let w=1;w<=N;w++)wr.push([w,wkDone(w),TOTAL]);
+ const er=[["Expense date","Category","Amount","Note"]].concat([...S.exp].sort((a,b)=>a.d-b.d).map(e=>[fmt(e.d,{year:"numeric"}),e.c,e.a,e.n||""]));
+ return r.map(a=>a.map(q).join(",")).join("\n")+"\n\n"+wr.map(a=>a.join(",")).join("\n")+"\n\n"+er.map(a=>a.map(q).join(",")).join("\n")}
+async function doExport(kind){const f=kind=="csv"?"recomp-tracker-data.csv":"recomp-backup-"+today+".json";
+ if(!DL){dlFile(f,kind=="csv"?csv():payload(),kind=="csv"?"text/csv":"application/json");MSG="Downloaded "+f;return render()}
+ try{await DL.save({filename:f,data:kind=="csv"?csv():payload()});MSG="Saved ✓ "+f}catch(e){MSG=e&&e.code=="declined"?"Cancelled.":"Couldn't save ("+(e&&e.code||"error")+"). Use Copy instead."}render()}
+async function doCopy(){try{await navigator.clipboard.writeText(payload());MSG="Backup copied to clipboard ✓"}catch(e){MSG="Copy blocked. Select the text in the box below and copy it manually.";const t=document.getElementById("paste");if(t){t.value=payload();t.select()}}render()}
+function stage(t,cloud){if(!cloud)delete GH.pendSha;try{const d=JSON.parse(t);if(d.app!="recomp-tracker")throw 0;PEND=d;MSG=""}catch(e){PEND=null;MSG="That doesn't look like a valid Recomp Tracker backup."}render()}
+function readFile(inp){const f=inp.files&&inp.files[0];if(!f)return;const r=new FileReader();r.onload=()=>stage(r.result);r.onerror=()=>{MSG="Couldn't read that file.";render()};r.readAsText(f)}
+function applyImport(){const d=PEND;S.wk=d.wk||{};S.log=d.log||{};S.wt=d.wt||{};S.waist=d.waist||{};S.exp=d.exp||[];PEND=null;save();if(GH.pendSha){clearTimeout(gt);GH.sha=GH.pendSha;GH.dirty=0;GH.conflict=0;delete GH.pendSha;ghSave()}MSG="Imported ✓ Your data has been restored.";render()}
+let GH=(()=>{try{return JSON.parse(localStorage.getItem("recomp-gh"))||{}}catch(e){return{}}})(),GST="";
+const ghSave=()=>{try{localStorage.setItem("recomp-gh",JSON.stringify(GH))}catch(e){}};
+const ghOn=()=>!!(GH.token&&GH.repo);
+const b64e=t=>btoa(unescape(encodeURIComponent(t))),b64d=t=>decodeURIComponent(escape(atob(t.replace(/\s/g,""))));
+const dlFile=(n,t,ty)=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([t],{type:ty}));a.download=n;document.body.appendChild(a);a.click();a.remove()};
+const ghReq=(m,b)=>fetch("https://api.github.com/repos/"+GH.repo+"/contents/data.json",{method:m,cache:"no-store",headers:{Authorization:"Bearer "+GH.token,Accept:"application/vnd.github+json"},body:b?JSON.stringify(b):undefined});
+async function ghRemote(){const r=await ghReq("GET");if(r.status==404)return null;if(!r.ok)throw new Error(r.status==401?"Token rejected. Check it and try again.":r.status==403?"Token lacks access. It needs Contents: Read and write on the data repo.":"GitHub error "+r.status);const j=await r.json();return{sha:j.sha,text:b64d(j.content)}}
+const setData=d=>{S.wk=d.wk||{};S.log=d.log||{};S.wt=d.wt||{};S.waist=d.waist||{};S.exp=d.exp||[]};
+const isEmpty=()=>!Object.keys(S.wk).length&&!Object.keys(S.log).length&&!Object.keys(S.wt).length&&!S.exp.length;
+const stamp=()=>new Date().toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"});
+async function ghPush(force){if(!ghOn())return;try{const rm=await ghRemote();
+ if(rm&&!force&&rm.sha!==GH.sha){GH.conflict=1;ghSave();GST="Cloud data differs from this device.";return render()}
+ const r=await ghReq("PUT",{message:"Update tracker data",content:b64e(payload()),sha:rm?rm.sha:undefined});
+ if(!r.ok)throw new Error("Save failed ("+r.status+")");const j=await r.json();GH.sha=j.content.sha;GH.dirty=0;GH.conflict=0;ghSave();GST="Synced ✓ "+stamp()}catch(e){GST=e.message||"Sync failed"}render()}
+async function ghPull(){try{const rm=await ghRemote();if(!rm){GST="No cloud data yet. Tap Upload.";return render()}GH.pendSha=rm.sha;ghSave();stage(rm.text,1)}catch(e){GST=e.message;render()}}
+async function ghInit(){if(!ghOn())return;try{const rm=await ghRemote();
+ if(rm&&rm.sha!==GH.sha){if(!GH.dirty&&(GH.sha||isEmpty())){setData(JSON.parse(rm.text));raw();GH.sha=rm.sha;GH.conflict=0;ghSave();GST="Loaded from cloud ✓ "+stamp()}else{GH.conflict=1;ghSave();GST="Cloud data differs from this device."}}
+ else if(!rm){await ghPush(true);return}else if(GH.dirty){await ghPush();return}else GST="Synced ✓ "+stamp()}catch(e){GST=e.message}render()}
+function ghConnect(){const t=$("#gt").value.trim(),r=$("#gr").value.trim();if(!t||!/^[\w.-]+\/[\w.-]+$/.test(r)){GST="Enter the token and the repo as username/recomp-data.";return render()}GH={token:t,repo:r};ghSave();GST="Connecting…";render();ghInit()}
+function ghOff(){GH={};ghSave();GST="Disconnected. Data stays on this device.";render()}
+document.addEventListener("visibilitychange",()=>{if(document.hidden&&GH.dirty&&ghOn()&&!GH.conflict)ghPush()});
+function syncCard(){
+ if(!ghOn())return `<div class="card"><h2>Cloud sync (GitHub)</h2><p class="note">Saves your data to your own private GitHub repo so every device stays in step. See the README for the 2-minute setup.</p><div class="ctl"><input id="gr" type="text" placeholder="username/recomp-data" autocapitalize="off" autocomplete="off" style="width:100%;font:inherit;font-size:16px;padding:6px;min-height:44px;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink)"></div><div class="ctl"><input id="gt" type="password" placeholder="Access token" autocomplete="off" style="width:100%;font:inherit;font-size:16px;padding:6px;min-height:44px;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink)"></div><div class="ctl"><button onclick="ghConnect()" style="background:var(--acc);border-color:var(--acc);color:#fff">Connect</button></div>${GST?`<p class="low">${GST}</p>`:""}</div>`;
+ let h=`<div class="card"><h2>Cloud sync (GitHub)</h2><p class="note">Connected to <b>${GH.repo}</b>. Changes upload automatically a few seconds after you make them.</p>`;
+ if(GH.conflict)h+=`<p class="low">${GST||"Cloud data differs from this device."} Choose which copy to keep.</p><div class="ctl"><button onclick="ghPull()">Use cloud data</button><button onclick="ghPush(true)">Overwrite cloud with this device</button></div>`;
+ else h+=`<p class="${GH.dirty?"low":"ok"}">${GST||(GH.dirty?"Waiting to upload…":"Synced ✓")}</p><div class="ctl"><button onclick="ghPush()">Upload now</button><button onclick="ghPull()">Download from cloud</button></div>`;
+ return h+`<div class="ctl"><button onclick="ghOff()">Disconnect this device</button></div></div>`}
+
+function dataTab(){
+ const n=[Object.values(S.wk).filter(Boolean).length,Object.keys(S.log).length,Object.values(S.wt).filter(x=>x!=="").length];
+ let h=syncCard()+`<div class="card"><h2>Export</h2><p class="note">Right now: ${n[0]} workout ticks · ${n[1]} logged days · ${n[2]} weigh-ins · ${S.exp.length} expenses.</p><div class="ctl"><button onclick="doExport('json')">Download backup (.json)</button><button onclick="doExport('csv')">Download spreadsheet (.csv)</button><button onclick="doCopy()">Copy backup</button></div><p class="note">The .json backup is what you import on another phone or browser. The .csv opens in Excel or Google Sheets.</p></div>`;
+ h+=`<div class="card"><h2>Import</h2><p class="note">Restore a .json backup. This replaces the data currently in this browser.</p><div class="ctl"><input type="file" accept=".json,application/json" onchange="readFile(this)"></div><textarea id="paste" rows="4" placeholder="…or paste a copied backup here" style="width:100%;font:14px monospace;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:8px"></textarea><div class="ctl" style="margin-top:8px"><button onclick="stage(document.getElementById('paste').value)">Load pasted backup</button></div>`;
+ if(PEND){const c=[Object.values(PEND.wk||{}).filter(Boolean).length,Object.keys(PEND.log||{}).length,Object.values(PEND.wt||{}).filter(x=>x!=="").length];h+=`<div class="card" style="background:var(--okbg)"><b>Backup ready:</b> ${c[0]} workout ticks · ${c[1]} logged days · ${c[2]} weigh-ins · ${(PEND.exp||[]).length} expenses${PEND.exported?" (from "+PEND.exported.slice(0,10)+")":""}.<div class="ctl" style="margin:10px 0 0"><button onclick="applyImport()">Replace my data with this</button><button onclick="PEND=null;render()">Cancel</button></div></div>`}
+ h+=`</div>`;if(MSG)h+=`<p class="ok" role="status">${MSG}</p>`;return h}
+
+const CATS=["Food","Groceries","Transport","Supplements","Bills","Shopping","Other"];
+const inr=n=>"₹"+Math.round(n).toLocaleString("en-IN");
+const ser=t=>{const[y,m,d]=t.split("-").map(Number);return Math.round(Date.UTC(y,m-1,d)/864e5)+25569};
+const ymOf=n=>{const d=new Date(Date.UTC(1899,11,30)+n*864e5);return d.getUTCFullYear()+"-"+String(d.getUTCMonth()+1).padStart(2,"0")};
+const dayOf=n=>new Date(Date.UTC(1899,11,30)+n*864e5).getUTCDate();
+function addExp(){const a=parseFloat($("#ea").value),d=$("#ed").value;if(!(a>0)||!d){MSG="Enter an amount and a date.";return render()}
+ S.exp.push({id:Date.now(),d:ser(d),a:a,c:$("#ec").value,n:$("#en").value.trim()});S.em=ymOf(ser(d));MSG="";save();render()}
+function delExp(id){S.exp=S.exp.filter(e=>e.id!==id);save();render()}
+function shiftM(k){const[y,m]=S.em.split("-").map(Number),t=new Date(y,m-1+k,1);S.em=t.getFullYear()+"-"+String(t.getMonth()+1).padStart(2,"0");save();render()}
+function expenses(){
+ if(!S.em)S.em=ymOf(today);
+ const[Y,M]=S.em.split("-").map(Number),dim=new Date(Y,M,0).getDate();
+ const list=S.exp.filter(e=>ymOf(e.d)==S.em).sort((a,b)=>b.d-a.d||b.id-a.id);
+ const by=Array(dim+1).fill(0);list.forEach(e=>by[dayOf(e.d)]+=e.a);
+ const tot=by.reduce((a,b)=>a+b,0),cur=ymOf(today)==S.em,el=cur?dayOf(today):dim,avg=tot/el;
+ const peak=Math.max(...by.slice(1)),pd=by.indexOf(peak);
+ const step=[100,200,500,1000,2000,5000,10000,20000,50000].find(v=>peak/v<=4)||100000,top=Math.max(step,Math.ceil(peak/step)*step);
+ const bw=620/dim,Y0=200,H=170,yy=v=>Y0-v/top*H;
+ let g="";for(let i=0;i<=4;i++){const v=top/4*i;g+=`<line x1="50" x2="680" y1="${yy(v)}" y2="${yy(v)}" stroke="var(--line)"/><text x="46" y="${yy(v)+4}" text-anchor="end">${v>=1000?(v/1000)+"k":v}</text>`}
+ let bars="",xl="";for(let d=1;d<=dim;d++){const x=50+(d-1)*bw;if(by[d]>0)bars+=`<rect x="${(x+bw*.15).toFixed(1)}" y="${yy(by[d]).toFixed(1)}" width="${(bw*.7).toFixed(1)}" height="${(by[d]/top*H).toFixed(1)}" rx="2" fill="${cur&&d==dayOf(today)?"var(--ok)":"var(--acc)"}"><title>${d} ${new Date(Y,M-1).toLocaleString("en-GB",{month:"short"})}: ${inr(by[d])}</title></rect>`;
+  if(d==1||d%5==0)xl+=`<text x="${(x+bw/2).toFixed(1)}" y="218" text-anchor="middle">${d}</text>`}
+ const ay=`<line x1="50" x2="680" y1="${yy(avg)}" y2="${yy(avg)}" stroke="var(--ink)" stroke-dasharray="5 4"/><text x="680" y="${yy(avg)-4}" text-anchor="end">avg ${inr(avg)}</text>`;
+ const cat={};list.forEach(e=>cat[e.c]=(cat[e.c]||0)+e.a);
+ const mn=new Date(Y,M-1).toLocaleString("en-GB",{month:"long",year:"numeric"});
+ let h=`<div class="card"><h2>Add expense</h2><div class="ctl"><input id="ea" type="number" inputmode="decimal" placeholder="Amount ₹" min="0" step="any" style="flex:1;min-width:110px"><select id="ec">${CATS.map(c=>`<option>${c}</option>`).join("")}</select></div><div class="ctl"><input id="en" type="text" placeholder="Note (optional)" style="flex:1;min-width:140px;font:inherit;font-size:16px;padding:6px;min-height:44px;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink)"><input id="ed" type="date" value="${new Date().toLocaleDateString("en-CA")}" style="width:auto;font:inherit;font-size:16px;padding:6px;min-height:44px;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink)"></div><div class="ctl"><button onclick="addExp()" style="background:var(--acc);border-color:var(--acc);color:#fff">Add expense</button></div>${MSG?`<p class="low">${MSG}</p>`:""}</div>`;
+ h+=`<div class="ctl"><button onclick="shiftM(-1)">←</button><b class="big" style="font-size:24px;flex:1;text-align:center">${mn}</b><button onclick="shiftM(1)">→</button></div>`;
+ h+=`<div class="stats"><div class="stat"><div class="big">${inr(tot)}</div><span>spent this month</span></div><div class="stat"><div class="big">${inr(avg)}</div><span>avg per day${cur?" so far":""}</span></div><div class="stat"><div class="big">${peak>0?inr(peak):"–"}</div><span>${peak>0?"highest day (day "+pd+")":"highest day"}</span></div></div>`;
+ h+=`<div class="card"><h2>Daily spend</h2><svg viewBox="0 0 700 226" style="width:100%;height:auto">${g}${bars}${ay}${xl}</svg>${tot?"":`<p class="note">No expenses in this month yet.</p>`}</div>`;
+ if(tot)h+=`<div class="card"><h2>By category</h2><table>`+Object.entries(cat).sort((a,b)=>b[1]-a[1]).map(([c,v])=>`<tr><td>${c}</td><td class="n">${inr(v)}</td><td class="n">${Math.round(v/tot*100)}%</td></tr>`).join("")+`</table></div>`;
+ h+=`<div class="card"><h2>Entries (${list.length})</h2>`+(list.length?list.map(e=>`<div class="row" style="cursor:default"><span class="nm">${e.c}${e.n?" · "+e.n.replace(/[<>&]/g,"")+"":""}<small>${fmt(e.d,{weekday:"short"})}</small></span><b>${inr(e.a)}</b><button onclick="delExp(${e.id})" aria-label="Delete" style="border:1px solid var(--line);background:none;color:var(--mute);border-radius:5px;min-width:40px;min-height:40px;font-size:18px;cursor:pointer">×</button></div>`).join(""):`<p class="note">Nothing here yet.</p>`)+`</div>`;
+ return h}
+
+function render(){nav();setTimeout(()=>{const e=document.getElementById("sst");if(e)e.textContent=ghOn()?(GH.conflict?"⚠ cloud differs":GH.dirty?"● not uploaded yet":"☁ synced"):""});const y=window.scrollY;$("#view").innerHTML={"Workout":workout,"Meal Plan":meals,"Daily Log":dailylog,"Weigh-In":weighin,"Expenses":expenses,"Data":dataTab}[S.tab]();window.scrollTo(0,y)}
+render();
+ghInit();
+</script>
+</body>
+</html>
