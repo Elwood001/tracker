@@ -143,13 +143,13 @@ const MESS=[["Mon","Plain paratha (max 2)","Dal palak, methi matar, curd rice (s
 ["Sun","Masala dosa (1)","Rajma masala, dalma, sprout salad, curd","Paneer amritsari, dal fry, gajar matar","Cheese burger, fryums, cham cham"]];
 const SWAPS=[["Mess paneer bhurji","100 g paneer","Served at breakfast daily. Best veg protein, calorie-dense",265,18],["Sprouts (mess)","1 bowl (~150 g)","Served at breakfast daily, low calorie",120,9],["Any mess dal","1 bowl (150 g)","Lunch and dinner; pair with roti or a little rice",150,10],["Chana / rajma / chole","100 g cooked","Skip the bhature and puri",165,9],["Soyabean dry / soya chunks","100 g cooked","Highest protein per kcal; Sat lunch",130,14],["Curd / chaas","1 bowl (200 g)","Take extra whenever it is served",120,7],["Milk","200 ml","At breakfast; also mix your whey into it",130,7],["Whey","1 scoop (30 g)","Closes the protein gap",120,25],["Roti (whole wheat)","1 medium","Small but it adds up",90,3]];
 const PHASES=[["Phase 1","89 to 85 kg","Meal plan above (start here)",2300,2000],["Phase 2","85 to 80 kg","Cut ~100 kcal: drop the 1/2 cup rice at lunch, limit desserts",2200,1950],["Phase 3","80 to 75 kg","Cut ~100 kcal more: drop the banana, keep all protein",2100,1900]];
-const LOGCOLS_NEW=[["Breakfast: paneer bhurji + sprouts + milk + 1 carb",40,680,""],["Lunch: dal + chana/rajma/soya dish + 2 rotis",34,680,""],["Whey 1 + banana",26,220,""],["Dinner: dal + sabzi + 2 rotis",20,510,""],["Whey 2 in milk",32,250,""],["Water 3 L+",0,0,""],["Steps 8k+",0,0,""],["Posture: stood up every 30-45 min of study + 5 min mobility",0,0,"pos"],["Slept 7+ hours",0,0,"slp"]];
+const LOGCOLS_NEW=[["Breakfast: paneer bhurji + sprouts + milk + 1 carb",40,680,"hide"],["Lunch: dal + chana/rajma/soya dish + 2 rotis",34,680,"hide"],["Whey 1 + banana",26,220,"hide"],["Dinner: dal + sabzi + 2 rotis",20,510,"hide"],["Whey 2 in milk",32,250,"hide"],["Water 3 L+",0,0,""],["Steps 8k+",0,0,""],["Posture: stood up every 30-45 min of study + 5 min mobility",0,0,"pos"],["Slept 7+ hours",0,0,"slp"]];
 const LOGCOLS_OLD=[["Breakfast",27,450],["Mid-morning curd",17,250],["Lunch",32,650],["Whey shake 1",25,120],["Banana",1,100],["Whey shake 2",25,120],["Dinner",32,500],["Water 3 L+",0,0],["Steps 10k+",0,0],["Caffeine OK (max 2 cups, none after 2 pm)",0,0],["Slept 7+ hours",0,0]];
 LOGCOLS_OLD[9][3]="caf";LOGCOLS_OLD[10][3]="slp";
 
-let S={wk:{},log:{},wt:{},waist:{},exp:[],em:null,tab:"Expenses",week:null,day:null};
+let S={wk:{},log:{},wt:{},waist:{},exp:[],ml:[],mt:{},md:null,mf:null,mm:null,em:null,tab:"Expenses",week:null,day:null};
 try{const r=localStorage.getItem("recomp-v1");if(r)S=Object.assign(S,JSON.parse(r))}catch(e){}
-const OWN=["exp","em","ed","ec"],ALLK=["wk","log","wt","waist","exp","week","day","em","ed","ec"];
+const OWN=["exp","em","ed","ec"],ALLK=["wk","log","wt","waist","exp","ml","mt","week","day","em","ed","ec"];
 const fresh=()=>{try{return JSON.parse(localStorage.getItem("recomp-v1"))||{}}catch(e){return{}}};
 const raw=all=>{try{const c=fresh();(all?ALLK:OWN).forEach(k=>{c[k]=S[k]});localStorage.setItem("recomp-v1",JSON.stringify(c))}catch(e){}};
 let gt=null;const save=()=>{raw();if(typeof ghOn=="function"&&ghOn()){GH.dirty=1;ghSave();clearTimeout(gt);gt=setTimeout(()=>ghPush(),3000)}};
@@ -192,13 +192,13 @@ const ptOf=d=>d<NEWSTART?PT:PTN;
 const hasTag=(d,t)=>{const a=S.log[d]||{};return cols(d).some((x,i)=>x[3]==t&&a[i])};
 function logVals(d){const a=S.log[d]||{};let p=0,c=0;cols(d).forEach((x,i)=>{if(a[i]){p+=x[1];c+=x[2]}});return{a,p,c}}
 function dailylog(){
- let onT=0,sl=0,po=0;for(let d=W1;d<W1+N*7;d++){const v=logVals(d);if(v.p>=ptOf(d))onT++;if(hasTag(d,"slp"))sl++;if(hasTag(d,"pos"))po++}
- const d=S.day,v=logVals(d),PTd=ptOf(d),ok=v.p>=PTd;
+ let onT=0,sl=0,po=0;for(let d=W1;d<W1+N*7;d++){const f0=dayFood(d);if(f0.p>=ptOf(d))onT++;if(hasTag(d,"slp"))sl++;if(hasTag(d,"pos"))po++}
+ const d=S.day,v=logVals(d),f=dayFood(d),PTd=ptOf(d),ok=f.p>=PTd;
  let h=`<div class="stats"><div class="stat"><div class="big">${onT}</div><span>days on protein target</span></div><div class="stat"><div class="big">${sl}</div><span>days slept 7+ h</span></div><div class="stat"><div class="big">${po}</div><span>days posture routine done</span></div></div>`;
  h+=`<div class="ctl"><button onclick="S.day=Math.max(${W1},S.day-1);save();render()">←</button><select onchange="S.day=+this.value;save();render()">`+Array.from({length:N*7},(_,i)=>W1+i).map(x=>`<option value="${x}" ${x==d?"selected":""}>${fmt(x,{weekday:"short"})}${x==today?" (today)":""}</option>`).join("")+`</select><button onclick="S.day=Math.min(${W1+N*7-1},S.day+1);save();render()">→</button><button onclick="S.day=Math.min(${W1+N*7-1},Math.max(${W1},${today}));save();render()">Today</button></div>`;
  h+=`<div class="card"><h2>${fmt(d,{weekday:"long",year:"numeric"})}</h2>`;
- cols(d).forEach((x,i)=>{h+=`<label class="row ${v.a[i]?"done":""}"><input type="checkbox" ${v.a[i]?"checked":""} onchange="(S.log[${d}]=S.log[${d}]||{})[${i}]=this.checked;save();render()"><span class="nm">${x[0]}<small>${x[2]?x[1]+" g protein · "+x[2]+" kcal":""}</small></span></label>`});
- h+=`<p style="margin:14px 0 4px"><b class="big" style="font-size:30px">${v.p} g</b> protein · <b class="big" style="font-size:30px">${v.c}</b> kcal · <span class="${ok?"ok":"low"}">${ok?"On target":v.p?PTd-v.p+" g to go":""}</span></p><div class="bar"><i style="width:${Math.min(100,v.p/PTd*100)}%"></i></div></div>`;
+ cols(d).forEach((x,i)=>{if(x[3]=="hide")return;h+=`<label class="row ${v.a[i]?"done":""}"><input type="checkbox" ${v.a[i]?"checked":""} onchange="(S.log[${d}]=S.log[${d}]||{})[${i}]=this.checked;save();render()"><span class="nm">${x[0]}<small>${x[2]?x[1]+" g protein · "+x[2]+" kcal":""}</small></span></label>`});
+ h+=`<p style="margin:14px 0 4px"><b class="big" style="font-size:30px">${f.p} g</b> protein · <b class="big" style="font-size:30px">${f.c}</b> kcal · <span class="${ok?"ok":"low"}">${ok?"On target":f.p?PTd-f.p+" g to go":""}</span></p><div class="bar"><i style="width:${Math.min(100,f.p/PTd*100)}%"></i></div>${d>=NEWSTART?`<p class="note">Food comes from your Meal Log tab.</p>`:""}</div>`;
  return h;
 }
 
@@ -227,23 +227,77 @@ function weighin(){
  return h+`</table></div></div>`;
 }
 
+/* ---- Meal logger ---- */
+const SLOTS=["Breakfast","Lunch","Tiffin / snack","Pre-gym","Dinner","Post-gym / shake","Other"];
+const QUICK=[["Whey, 1 scoop in water",120,25],["Whey in 200 ml milk",250,32],["Banana",100,1],["Milk, 1 glass",130,7],["Roti, 1",90,3],["Curd or chaas, 1 bowl",100,5]];
+let MTXT="";
+const uid=()=>Date.now()*1000+Math.floor(Math.random()*1000);
+const esc=t=>String(t==null?"":t).replace(/[<>&"]/g,c=>({"<":"&lt;",">":"&gt;","&":"&amp;",'"':"&quot;"}[c]));
+const num=v=>{const x=parseFloat(v);return isNaN(x)?"":x};
+const hasN=v=>v!==""&&v!=null&&!isNaN(+v);
+function mealTot(d){const L=S.ml.filter(e=>e.d==d),o=S.mt[d]||{};let k=0,p=0;L.forEach(e=>{k+=+e.k||0;p+=+e.p||0});const ok=hasN(o.k),op=hasN(o.p);if(ok)k=+o.k;if(op)p=+o.p;return{k:k,p:p,n:L.length,over:ok||op}}
+const dayFood=d=>{if(d<NEWSTART)return logVals(d);const m=mealTot(d);return{p:m.p,c:m.k}};
+const isRestDay=d=>{const x=((d-W1)%7+7)%7;return x==2||x==6};
+const dayTarget=d=>isRestDay(d)?2000:2300;
+const fld=()=>({t:($("#mtx")||{}).value||"",k:($("#mk")||{}).value||"",p:($("#mpr")||{}).value||"",s:($("#ms")||{}).value||S.mm});
+function setMD(v){if(!v)return;S.mf=fld();S.md=ser(v);MSG="";MTXT="";render()}
+function shiftMD(k){setMD(isoOf((S.md==null?today:S.md)+k))}
+function addMeal(){const t=($("#mtx").value||"").trim();if(!t){S.mf=fld();MSG="Type what you ate first.";return render()}
+ const s=$("#ms").value;S.ml.push({id:uid(),d:S.md==null?today:S.md,m:s,t:t,k:num($("#mk").value),p:num($("#mpr").value)});S.mm=s;S.mf=null;MSG="";save();render();setTimeout(()=>{const e=$("#mtx");if(e)e.focus()},0)}
+function quick(i){const q=QUICK[i],f=fld();S.ml.push({id:uid(),d:S.md==null?today:S.md,m:f.s||SLOTS[0],t:q[0],k:q[1],p:q[2]});S.mm=f.s;S.mf={t:f.t,k:f.k,p:f.p,s:f.s};MSG="";save();render()}
+function setML(id,f,v){const e=S.ml.find(x=>x.id==id);if(e)e[f]=num(v);save();render()}
+function delML(id){S.ml=S.ml.filter(e=>e.id!=id);save();render()}
+function setMT(d,f,v){S.mt[d]=S.mt[d]||{};S.mt[d][f]=v===""?"":+v;save();render()}
+function aiText(range){
+ const end=S.md==null?today:S.md,ds=range=="week"?Array.from({length:7},(_,i)=>end-6+i):[end];
+ let t="I'm cutting fat while building muscle. Please estimate calories and protein (g) for everything I ate below. Where I didn't give an amount, assume a typical Indian hostel mess portion and tell me what you assumed. Reply with: (1) a table of every item with kcal and protein, (2) the total for each day, (3) whether I'm over or under my target (about 2,300 kcal and 150 g protein on training days, about 2,000 kcal on rest days), and (4) two or three specific changes for tomorrow. Be honest about uncertainty.\n\nAbout me: male, 175 cm, 89 kg, vegetarian (no eggs), eating at a hostel mess plus whey protein. I lift 4 days and run 3 days a week.\n\n";
+ ds.forEach(d=>{const L=S.ml.filter(e=>e.d==d);t+=fmt(d,{weekday:"short",day:"numeric",month:"short"})+(isRestDay(d)?" (rest day)":" (training day)")+":\n";
+  if(!L.length)t+="- nothing logged\n";
+  else SLOTS.forEach(s=>{L.filter(e=>e.m==s).forEach(e=>{const g=[];if(hasN(e.k))g.push(e.k+" kcal");if(hasN(e.p))g.push(e.p+" g protein");t+="- "+s+": "+e.t+(g.length?" (my guess: "+g.join(", ")+")":"")+"\n"})});
+  t+="\n"});
+ return t.trim()}
+async function copyAI(range){const t=aiText(range);try{await navigator.clipboard.writeText(t);MSG="Copied. Paste it into Claude or any AI chat.";MTXT=""}catch(e){MSG="Copy was blocked. Select the text below and copy it.";MTXT=t}render()}
+function meallog(){
+ const d=S.md==null?today:S.md,F=S.mf||{};S.mf=null;
+ const L=S.ml.filter(e=>e.d==d),T=mealTot(d),tk=dayTarget(d),sel=F.s||S.mm||SLOTS[0];
+ const miss=L.filter(e=>!hasN(e.k)).length,kLeft=tk-T.k,pLeft=PTN-T.p;
+ const IN='width:100%;font:inherit;font-size:16px;padding:6px;min-height:44px;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink)';
+ let h=`<div class="stats"><div class="stat"><div class="big">${Math.round(T.k)}</div><span>kcal logged · target ${tk}</span></div><div class="stat"><div class="big ${kLeft<0?"low":""}">${Math.abs(Math.round(kLeft))}</div><span>kcal ${kLeft<0?"over":"left"}</span></div><div class="stat"><div class="big">${Math.round(T.p)}</div><span>g protein · target ${PTN}</span></div><div class="stat"><div class="big">${Math.max(0,Math.round(pLeft))}</div><span>g protein left</span></div></div>`;
+ h+=`<div class="card"><h2>Log food</h2><div class="ctl"><button onclick="shiftMD(-1)" aria-label="Previous day">←</button><input id="md" type="date" value="${isoOf(d)}" onchange="setMD(this.value)" style="flex:1;min-width:140px;font:inherit;font-size:16px;padding:6px;min-height:44px;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink)"><button onclick="shiftMD(1)" aria-label="Next day">→</button><button onclick="setMD(isoOf(today))">Today</button></div>`;
+ h+=`<div class="ctl"><select id="ms" style="width:100%">${SLOTS.map(s=>`<option ${s==sel?"selected":""}>${s}</option>`).join("")}</select></div>`;
+ h+=`<div class="ctl"><input id="mtx" type="text" placeholder="What did you eat? e.g. 2 idli, sambar, 1 bowl sprouts" value="${esc(F.t)}" onkeydown="if(event.key=='Enter')addMeal()" style="${IN}"></div>`;
+ h+=`<div class="ctl"><input id="mk" type="number" inputmode="decimal" placeholder="kcal (optional)" value="${esc(F.k)}" style="flex:1;min-width:110px"><input id="mpr" type="number" inputmode="decimal" placeholder="protein g (optional)" value="${esc(F.p)}" style="flex:1;min-width:110px"></div>`;
+ h+=`<div class="ctl"><button onclick="addMeal()" style="background:var(--acc);border-color:var(--acc);color:var(--onacc)">Add food</button></div>`;
+ h+=`<p class="note">Not sure of the calories? Leave them blank, log everything you eat, then send the day to an AI below.</p><div class="ctl">`+QUICK.map((q,i)=>`<button onclick="quick(${i})">+ ${q[0]}</button>`).join("")+`</div>${MSG&&S.tab=="Meal Log"&&MSG.startsWith("Type")?`<p class="low" role="status">${MSG}</p>`:""}</div>`;
+ let ent="";
+ SLOTS.forEach(s=>{const g=L.filter(e=>e.m==s);if(!g.length)return;ent+=`<h3 style="font-size:18px;margin:12px 0 2px;color:var(--mute)">${s}</h3>`;
+  g.forEach(e=>{ent+=`<div class="row" style="cursor:default;flex-wrap:wrap"><span class="nm" style="flex:1 1 100%">${esc(e.t)}</span><span style="flex:1"></span><input type="number" inputmode="decimal" placeholder="kcal" value="${esc(e.k)}" onchange="setML(${e.id},'k',this.value)" aria-label="kcal" style="width:78px;min-height:40px;font-size:16px"><input type="number" inputmode="decimal" placeholder="g prot" value="${esc(e.p)}" onchange="setML(${e.id},'p',this.value)" aria-label="protein grams" style="width:78px;min-height:40px;font-size:16px"><button onclick="delML(${e.id})" aria-label="Delete" style="border:1px solid var(--line);background:none;color:var(--mute);border-radius:5px;min-width:40px;min-height:40px;font-size:18px;cursor:pointer">×</button></div>`})});
+ const o=S.mt[d]||{};
+ h+=`<div class="card"><h2>${fmt(d,{weekday:"long",day:"numeric",month:"short"})} · ${isRestDay(d)?"rest day":"training day"}</h2>`+(ent||`<p class="note">Nothing logged on this day yet.</p>`)+(miss?`<p class="note">${miss} ${miss==1?"item has":"items have"} no calories yet. Copy the day for an AI below, then type the numbers in here.</p>`:"")+`<div class="ctl" style="margin-top:12px"><span class="note" style="flex:1 1 100%">Day total from the AI (replaces the sum above when filled):</span><input type="number" inputmode="decimal" placeholder="total kcal" value="${esc(o.k)}" onchange="setMT(${d},'k',this.value)" style="width:120px"><input type="number" inputmode="decimal" placeholder="total protein g" value="${esc(o.p)}" onchange="setMT(${d},'p',this.value)" style="width:140px"></div></div>`;
+ h+=`<div class="card"><h2>Send to AI</h2><p class="note">Copies your food list plus instructions that ask for calories, protein and what to fix. Paste it into Claude or any AI chat, then type the numbers back in above.</p><div class="ctl"><button onclick="copyAI('day')">Copy this day</button><button onclick="copyAI('week')">Copy last 7 days</button><a href="https://claude.ai/new" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;min-height:44px;padding:0 12px;border:1px solid var(--acc);border-radius:5px;color:var(--acc);text-decoration:none;font-weight:600">Open Claude</a></div>${MSG&&!MSG.startsWith("Type")?`<p class="ok" role="status">${MSG}</p>`:""}${MTXT?`<textarea rows="8" readonly onfocus="this.select()" style="width:100%;font:14px monospace;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:8px">${esc(MTXT)}</textarea>`:""}</div>`;
+ const days=Array.from({length:7},(_,i)=>d-6+i);let sk=0,sn=0;
+ h+=`<div class="card"><h2>Last 7 days</h2><div class="scroll"><table><tr><th>Day</th><th class="n">Items</th><th class="n">Kcal</th><th class="n">Protein</th><th class="n">Target</th></tr>`+days.map(x=>{const m=mealTot(x),on=m.n||m.over;if(on){sk+=m.k;sn++}return `<tr><td>${fmt(x,{weekday:"short",day:"numeric",month:"short"})}</td><td class="n">${m.n}</td><td class="n">${on?Math.round(m.k):"–"}</td><td class="n">${on?Math.round(m.p):"–"}</td><td class="n">${dayTarget(x)}</td></tr>`}).join("")+`</table></div><p class="note">${sn?"Average on logged days: "+Math.round(sk/sn)+" kcal. ":"No days logged yet. "}Coming off a long bulk? Log 4-5 normal days first to see your real intake, then lower it by about 200 kcal every week or two until you reach the targets. Keep protein at ${PTN} g the whole way.</p></div>`;
+ h+=`<details style="margin:0 0 14px"><summary style="font:600 22px 'Barlow Condensed',sans-serif;text-transform:uppercase;cursor:pointer;padding:8px 0">Reference: planned day, mess guide, calorie phases</summary>${meals()}</details>`;
+ return h;
+}
+
 let DL=null,MSG="",PEND=null;
 try{if(window.claude&&claude.use)claude.use("downloads").then(x=>{DL=x;if(S.tab=="Data")render()}).catch(()=>{})}catch(e){}
-const payload=()=>{const c=fresh(),o={};["wk","log","wt","waist","exp"].forEach(k=>{o[k]=OWN.includes(k)?S[k]:(c[k]??S[k])});return JSON.stringify(Object.assign({app:"recomp-tracker",v:1,exported:new Date().toISOString()},o),null,1)};
+const payload=()=>{const c=fresh(),o={};["wk","log","wt","waist","exp","ml","mt"].forEach(k=>{o[k]=OWN.includes(k)?S[k]:(c[k]??S[k])});return JSON.stringify(Object.assign({app:"recomp-tracker",v:1,exported:new Date().toISOString()},o),null,1)};
 function csv(){const q=v=>'"'+String(v??"").replace(/"/g,'""')+'"';
  const wd=new Set([START]);for(let i=1;i<N;i++)wd.add(W1+7*i);wd.add(TARGET);
  let r=[["Date","Day","Weight kg","Waist cm","Protein g","Kcal","Ticked items"]];
- for(let d=W1;d<W1+N*7;d++){const v=logVals(d);r.push([fmt(d,{year:"numeric"}),fmt(d,{weekday:"short"}),S.wt[d]||"",S.waist[d]||"",v.p,v.c].concat([cols(d).filter((c,i)=>v.a[i]).map(c=>c[0]).join("; ")]))}
+ for(let d=W1;d<W1+N*7;d++){const v=logVals(d),f=dayFood(d);r.push([fmt(d,{year:"numeric"}),fmt(d,{weekday:"short"}),S.wt[d]||"",S.waist[d]||"",f.p,f.c].concat([cols(d).filter((c,i)=>v.a[i]).map(c=>c[0]).join("; ")]))}
  const wr=[["Week","Workout items done","of"]];for(let w=1;w<=N;w++)wr.push([w,wkDone(w),wkTotal(w)]);
  const er=[["Expense date","Category","Amount","Note"]].concat([...S.exp].sort((a,b)=>a.d-b.d).map(e=>[fmt(e.d,{year:"numeric"}),e.c,e.a,e.n||""]));
- return r.map(a=>a.map(q).join(",")).join("\n")+"\n\n"+wr.map(a=>a.join(",")).join("\n")+"\n\n"+er.map(a=>a.map(q).join(",")).join("\n")}
+ const mr=[["Meal date","Meal","Food","Kcal","Protein g"]].concat([...S.ml].sort((a,b)=>a.d-b.d||a.id-b.id).map(e=>[fmt(e.d,{year:"numeric"}),e.m,e.t,e.k,e.p]));return r.map(a=>a.map(q).join(",")).join("\n")+"\n\n"+wr.map(a=>a.join(",")).join("\n")+"\n\n"+er.map(a=>a.map(q).join(",")).join("\n")+"\n\n"+mr.map(a=>a.map(q).join(",")).join("\n")}
 async function doExport(kind){const f=kind=="csv"?"recomp-tracker-data.csv":"recomp-backup-"+today+".json";
  if(!DL){dlFile(f,kind=="csv"?csv():payload(),kind=="csv"?"text/csv":"application/json");MSG="Downloaded "+f;return render()}
  try{await DL.save({filename:f,data:kind=="csv"?csv():payload()});MSG="Saved ✓ "+f}catch(e){MSG=e&&e.code=="declined"?"Cancelled.":"Couldn't save ("+(e&&e.code||"error")+"). Use Copy instead."}render()}
 async function doCopy(){try{await navigator.clipboard.writeText(payload());MSG="Backup copied to clipboard ✓"}catch(e){MSG="Copy blocked. Select the text in the box below and copy it manually.";const t=document.getElementById("paste");if(t){t.value=payload();t.select()}}render()}
 function stage(t,cloud){if(!cloud)delete GH.pendSha;try{const d=JSON.parse(t);if(d.app!="recomp-tracker")throw 0;PEND=d;MSG=""}catch(e){PEND=null;MSG="That doesn't look like a valid Recomp Tracker backup."}render()}
 function readFile(inp){const f=inp.files&&inp.files[0];if(!f)return;const r=new FileReader();r.onload=()=>stage(r.result);r.onerror=()=>{MSG="Couldn't read that file.";render()};r.readAsText(f)}
-function applyImport(){const d=PEND;S.wk=d.wk||{};S.log=d.log||{};S.wt=d.wt||{};S.waist=d.waist||{};S.exp=d.exp||[];PEND=null;raw(1);save();if(GH.pendSha){clearTimeout(gt);GH.sha=GH.pendSha;GH.dirty=0;GH.conflict=0;delete GH.pendSha;ghSave()}MSG="Imported ✓ Your data has been restored.";render()}
+function applyImport(){const d=PEND;S.wk=d.wk||{};S.log=d.log||{};S.wt=d.wt||{};S.waist=d.waist||{};S.exp=d.exp||[];S.ml=d.ml||[];S.mt=d.mt||{};PEND=null;raw(1);save();if(GH.pendSha){clearTimeout(gt);GH.sha=GH.pendSha;GH.dirty=0;GH.conflict=0;delete GH.pendSha;ghSave()}MSG="Imported ✓ Your data has been restored.";render()}
 let GH=(()=>{try{return JSON.parse(localStorage.getItem("recomp-gh"))||{}}catch(e){return{}}})(),GST="";
 const ghSave=()=>{try{localStorage.setItem("recomp-gh",JSON.stringify(GH))}catch(e){}};
 const ghOn=()=>!!(GH.token&&GH.repo);
@@ -251,8 +305,8 @@ const b64e=t=>btoa(unescape(encodeURIComponent(t))),b64d=t=>decodeURIComponent(e
 const dlFile=(n,t,ty)=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([t],{type:ty}));a.download=n;document.body.appendChild(a);a.click();a.remove()};
 const ghReq=(m,b)=>fetch("https://api.github.com/repos/"+GH.repo+"/contents/data.json",{method:m,cache:"no-store",headers:{Authorization:"Bearer "+GH.token,Accept:"application/vnd.github+json"},body:b?JSON.stringify(b):undefined});
 async function ghRemote(){const r=await ghReq("GET");if(r.status==404)return null;if(!r.ok)throw new Error(r.status==401?"Token rejected. Check it and try again.":r.status==403?"Token lacks access. It needs Contents: Read and write on the data repo.":"GitHub error "+r.status);const j=await r.json();return{sha:j.sha,text:b64d(j.content)}}
-const setData=d=>{S.wk=d.wk||{};S.log=d.log||{};S.wt=d.wt||{};S.waist=d.waist||{};S.exp=d.exp||[]};
-const isEmpty=()=>!Object.keys(S.wk).length&&!Object.keys(S.log).length&&!Object.keys(S.wt).length&&!S.exp.length;
+const setData=d=>{S.wk=d.wk||{};S.log=d.log||{};S.wt=d.wt||{};S.waist=d.waist||{};S.exp=d.exp||[];S.ml=d.ml||[];S.mt=d.mt||{}};
+const isEmpty=()=>!Object.keys(S.wk).length&&!Object.keys(S.log).length&&!Object.keys(S.wt).length&&!S.exp.length&&!S.ml.length;
 const stamp=()=>new Date().toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"});
 async function ghPush(force){if(!ghOn())return;try{const rm=await ghRemote();
  if(rm&&!force&&rm.sha!==GH.sha){GH.conflict=1;ghSave();GST="Cloud data differs from this device.";return render()}
@@ -274,7 +328,7 @@ function syncCard(){
 
 function dataTab(){
  const n=[Object.values(S.wk).filter(Boolean).length,Object.keys(S.log).length,Object.values(S.wt).filter(x=>x!=="").length];
- let h=syncCard()+`<div class="card"><h2>Export</h2><p class="note">Right now: ${n[0]} workout ticks · ${n[1]} logged days · ${n[2]} weigh-ins · ${S.exp.length} expenses.</p><div class="ctl"><button onclick="doExport('json')">Download backup (.json)</button><button onclick="doExport('csv')">Download spreadsheet (.csv)</button><button onclick="doCopy()">Copy backup</button></div><p class="note">The .json backup is what you import on another phone or browser. The .csv opens in Excel or Google Sheets.</p></div>`;
+ let h=syncCard()+`<div class="card"><h2>Export</h2><p class="note">Right now: ${n[0]} workout ticks · ${n[1]} logged days · ${n[2]} weigh-ins · ${S.exp.length} expenses · ${S.ml.length} food entries.</p><div class="ctl"><button onclick="doExport('json')">Download backup (.json)</button><button onclick="doExport('csv')">Download spreadsheet (.csv)</button><button onclick="doCopy()">Copy backup</button></div><p class="note">The .json backup is what you import on another phone or browser. The .csv opens in Excel or Google Sheets.</p></div>`;
  h+=`<div class="card"><h2>Import</h2><p class="note">Restore a .json backup. This replaces the data currently in this browser.</p><div class="ctl"><input type="file" accept=".json,application/json" onchange="readFile(this)"></div><textarea id="paste" rows="4" placeholder="…or paste a copied backup here" style="width:100%;font:14px monospace;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:8px"></textarea><div class="ctl" style="margin-top:8px"><button onclick="stage(document.getElementById('paste').value)">Load pasted backup</button></div>`;
  if(PEND){const c=[Object.values(PEND.wk||{}).filter(Boolean).length,Object.keys(PEND.log||{}).length,Object.values(PEND.wt||{}).filter(x=>x!=="").length];h+=`<div class="card" style="background:var(--okbg)"><b>Backup ready:</b> ${c[0]} workout ticks · ${c[1]} logged days · ${c[2]} weigh-ins · ${(PEND.exp||[]).length} expenses${PEND.exported?" (from "+PEND.exported.slice(0,10)+")":""}.<div class="ctl" style="margin:10px 0 0"><button onclick="applyImport()">Replace my data with this</button><button onclick="PEND=null;render()">Cancel</button></div></div>`}
  h+=`</div>`;if(MSG)h+=`<p class="ok" role="status">${MSG}</p>`;return h}
@@ -322,7 +376,7 @@ function expenses(){
  h+=`<div class="card"><h2>Entries (${list.length})</h2>`+(list.length?list.map(e=>`<div class="row" style="cursor:default"><span class="nm">${e.c}${e.n?" · "+e.n.replace(/[<>&]/g,"")+"":""}<small>${fmt(e.d,{weekday:"short"})}</small></span><b>${inr(e.a)}</b><button onclick="delExp(${e.id})" aria-label="Delete" style="border:1px solid var(--line);background:none;color:var(--mute);border-radius:5px;min-width:40px;min-height:40px;font-size:18px;cursor:pointer">×</button></div>`).join(""):`<p class="note">Nothing here yet.</p>`)+`</div>`;
  return h}
 
-function render(){nav();setTimeout(()=>{const e=document.getElementById("sst");if(e)e.textContent=ghOn()?(GH.conflict?"⚠ cloud differs":GH.dirty?"● not uploaded yet":"☁ synced"):""});const y=window.scrollY;$("#view").innerHTML={"Workout":workout,"Meal Plan":meals,"Daily Log":dailylog,"Weigh-In":weighin,"Expenses":expenses,"Data":dataTab}[S.tab]();window.scrollTo(0,y)}
+function render(){nav();setTimeout(()=>{const e=document.getElementById("sst");if(e)e.textContent=ghOn()?(GH.conflict?"⚠ cloud differs":GH.dirty?"● not uploaded yet":"☁ synced"):""});const y=window.scrollY;$("#view").innerHTML={"Workout":workout,"Meal Plan":meals,"Meal Log":meallog,"Daily Log":dailylog,"Weigh-In":weighin,"Expenses":expenses,"Data":dataTab}[S.tab]();window.scrollTo(0,y)}
 render();
 ghInit();
 </script>
